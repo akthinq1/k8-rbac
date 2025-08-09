@@ -20,7 +20,7 @@ rules:
   verbs: ["get", "watch", "list"] #actions
 
 - apiGroups: ["app"]
-  resources: ["deployements"]
+  resources: ["deployments"]
   verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 
 ---
