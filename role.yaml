@@ -19,7 +19,7 @@ rules:
   resources: ["pods" ] # nouns
   verbs: ["get", "watch", "list"] #actions
 
-- apiGroups: ["app"]
+- apiGroups: ["apps"]
   resources: ["deployments"]
   verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 
