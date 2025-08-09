@@ -9,6 +9,21 @@ rules:
   verbs: ["get", "watch", "list"] #actions
 
 ---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: roboshop
+  name: roboshop-junior
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods" ] # nouns
+  verbs: ["get", "watch", "list"] #actions
+
+- apiGroups: ["app"]
+  resources: ["deployements"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+
+---
 
 apiVersion: rbac.authorization.k8s.io/v1
 # This role binding allows "anilRBAC" to read pods in the "roboshop" namespace.
@@ -26,4 +41,24 @@ roleRef:
   # "roleRef" specifies the binding to a Role / ClusterRole
   kind: Role #this must be Role or ClusterRole
   name: roboshop-trainee # this must match the name of the Role or ClusterRole you wish to bind to
+  apiGroup: rbac.authorization.k8s.io
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+# This role binding allows "anilRBAC" to read pods in the "roboshop" namespace.
+# You need to already have a Role named "roboshop-trainee" in that namespace.
+kind: RoleBinding
+metadata:
+  name: roboshop-junior
+  namespace: roboshop
+subjects:
+# You can specify more than one "subject"
+- kind: User
+  name: anilRBAC # "name" is case sensitive
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  # "roleRef" specifies the binding to a Role / ClusterRole
+  kind: Role #this must be Role or ClusterRole
+  name: roboshop-junior # this must match the name of the Role or ClusterRole you wish to bind to
   apiGroup: rbac.authorization.k8s.io
