@@ -10,9 +10,9 @@ rules:
 
 ---
 
+# while creating the rolebindin need to mention the namespace details for SA role binding
+
 apiVersion: rbac.authorization.k8s.io/v1
-# This role binding allows "anilRBAC" to read pods in the "roboshop" namespace.
-# You need to already have a Role named "roboshop-trainee" in that namespace.
 kind: RoleBinding
 metadata:
   name: sa-secret-reader
@@ -21,7 +21,7 @@ subjects:
 # You can specify more than one "subject"
 - kind: ServiceAccount
   name: roboshop-mysql-secret-reader # "name" is case sensitive
-  apiGroup: rbac.authorization.k8s.io
+  namespace: roboshop
 roleRef:
   # "roleRef" specifies the binding to a Role / ClusterRole
   kind: Role #this must be Role or ClusterRole
@@ -32,7 +32,7 @@ roleRef:
 
 # create a pod for checking SA is able to access the data or not
 # aws-cli
-
+# mention service account name else it will take default sa
 apiVersion: v1
 kind: Pod
 metadata:
