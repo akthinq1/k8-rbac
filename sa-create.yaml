@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::741005748171:role/eksctl-roboshop-addon-iamserviceaccount-robos-Role1-4kcl9KnZbQsU
+  creationTimestamp: "2025-08-11T10:32:15Z"
+  labels:
+    app.kubernetes.io/managed-by: eksctl
+  name: roboshop-mysql-secret-reader
+  namespace: roboshop
+  resourceVersion: "7430"
+  uid: 243bfab5-e4b4-46eb-8ec7-5dc2eaa1a6cc
